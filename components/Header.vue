@@ -1,9 +1,9 @@
 <template>
-  <div>welcome</div>
+  <div class="text-green-500">welcome</div>
 </template>
 
 <script>
 export default {
-  name: "NuxtTutorial",
+  name: "Header",
 };
 </script>
