@@ -1,21 +1,11 @@
 <template>
   <div class="flex bg-gray-300 justify-between p-4">
-    <div></div>
-    <div class="logo">
-      <NuxtLink to="/">Home</NuxtLink>
-
-      <!--replace it with actual logo. this is home-->
+    <div class="text-lg font-bold tracking-widest leading-loose">
+      <NuxtLink to="/">HOME</NuxtLink>
     </div>
 
     <div class="flex justify-between gap-2">
       <NuxtLink to="/temp">temp</NuxtLink>
-
-      <!--find how to set css from nuxt - 'active' -->
-
-      <div>
-        user icon
-        <!--replace it with actual icon-->
-      </div>
 
       <div>
         cart icon
@@ -28,12 +18,24 @@
 
         <!--replace it with actual icon-->
       </div>
+      <div>
+        user icon
+        <User />
+
+        <!--replace it with actual icon-->
+      </div>
     </div>
   </div>
 </template>
 
 <script scoped>
+import User from "../icons/User.vue";
 export default {
   name: "Header",
+  components: {
+    User: User,
+  },
 };
 </script>
+
+<style scoped></style>
