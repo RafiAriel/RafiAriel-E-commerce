@@ -1,5 +1,5 @@
 html,
 body {
   max-width: 1440px;
-  @apply mx-auto bg-purple-100 bg-opacity-80;
+  @apply mx-auto bg-purple-50 bg-opacity-80;
 }
