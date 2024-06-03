@@ -4,6 +4,6 @@
 
 <script scoped>
 export default {
-  name: "User",
+  name: "UserIcon",
 };
 </script>

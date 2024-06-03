@@ -20,7 +20,7 @@
       </div>
       <div>
         user icon
-        <User />
+        <UserIcon />
 
         <!--replace it with actual icon-->
       </div>
@@ -29,11 +29,11 @@
 </template>
 
 <script scoped>
-import User from "../icons/User.vue";
+import UserIcon from "../icons/UserIcon.vue";
 export default {
   name: "Header",
   components: {
-    User: User,
+    UserIcon: UserIcon,
   },
 };
 </script>
