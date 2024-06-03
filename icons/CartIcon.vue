@@ -1,10 +1,10 @@
 <template>
-  <i class="fa-regular fa-user"></i>
+  <i class="fa-solid fa-cart-shopping"></i>
 </template>
 
 <script scoped>
 export default {
-  name: "UserIcon",
+  name: "CartIcon",
 };
 </script>
 
