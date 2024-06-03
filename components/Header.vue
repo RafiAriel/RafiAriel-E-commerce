@@ -7,13 +7,9 @@
     </div>
 
     <div class="flex justify-between gap-5">
-      <div>
-        <CartIcon />
-      </div>
+      <NuxtLink to="/cart"> <CartIcon /> </NuxtLink>
 
-      <div>
-        <UserIcon />
-      </div>
+      <NuxtLink to="/user"> <UserIcon /> </NuxtLink>
     </div>
   </div>
 </template>
