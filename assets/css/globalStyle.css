@@ -3,3 +3,25 @@ body {
   max-width: 1440px;
   @apply mx-auto bg-purple-50 bg-opacity-80 font-sans;
 }
+
+/* scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+/* background of entire scrollbar */
+::-webkit-scrollbar-track {
+  @apply bg-gray-300;
+}
+
+/* Handle background */
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 rounded-sm;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-700;
+}
