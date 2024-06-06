@@ -35,7 +35,11 @@ export default {
     getRating() {
       const ratingDecrease =
         this.getCurrentDay % 2 === 1 && this.productId % 2 === 1 ? 10 : 0;
-      return ((this.rating / this.maxStars) * 100) / 2 - ratingDecrease;
+
+      return (
+        ((this.rating / this.maxStars) * 100) / (10 / this.maxStars) -
+        ratingDecrease
+      );
     },
   },
 };
