@@ -12,15 +12,21 @@
     <div class="font-bold text-lg text-red-600">
       {{ `$${product.price}` }}
     </div>
+
+    <div>
+      <AddToCartButton />
+    </div>
   </div>
 </template>
 
 <script scoped>
+import AddToCartButton from "./buttons/AddToCartButton.vue";
 import StarRating from "./StarRating.vue";
 export default {
   name: "Product",
   components: {
     StarRating: StarRating,
+    AddToCartButton: AddToCartButton,
   },
   props: {
     product: {
