@@ -7,19 +7,21 @@
     <div class="text-sm lg:text-base text-center truncate">
       {{ product.title }}
     </div>
+    <StarRating :productId="product.id" :rating="product.rating.rate" />
+
     <div class="font-bold text-lg text-red-600">
       {{ `$${product.price}` }}
     </div>
-
-    <!-- 
-      https://www.w3schools.com/howto/howto_css_star_rating.asp
-    -->
   </div>
 </template>
 
 <script scoped>
+import StarRating from "./StarRating.vue";
 export default {
   name: "Product",
+  components: {
+    StarRating: StarRating,
+  },
   props: {
     product: {
       type: Object,
