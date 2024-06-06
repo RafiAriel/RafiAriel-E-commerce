@@ -34,7 +34,10 @@ export default {
     },
     getRating() {
       const ratingDecrease =
-        this.getCurrentDay % 2 === 1 && this.productId % 2 === 1 ? 10 : 0;
+        (this.getCurrentDay % 2 === 1 && this.productId % 2 === 1) ||
+        (this.getCurrentDay % 2 === 0 && this.productId % 2 === 0)
+          ? 10
+          : 0;
 
       return (
         ((this.rating / this.maxStars) * 100) / (10 / this.maxStars) -
