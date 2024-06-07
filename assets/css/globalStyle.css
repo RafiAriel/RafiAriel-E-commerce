@@ -1,6 +1,6 @@
 html,
 body {
-  max-width: 1440px;
+  max-width: 1536px;
   @apply mx-auto bg-purple-50 bg-opacity-80 font-sans;
 }
 
