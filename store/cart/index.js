@@ -16,15 +16,18 @@ export const getters = {
 
 export const mutations = {
   addProduct(state, product) {
-    state.products[product.id] = product;
+    state.cart.products[product.id] = product;
   },
   setTotalCartPrice(state, totalCartPrice) {
-    state.totalCartPrice = totalCartPrice;
+    state.cart.totalCartPrice = totalCartPrice;
   },
 };
 
 export const actions = {
-  updateCart({ commit, state }, product, amount) {
+  async getCurrentProductQuantity({ state }, productId) {
+    return state.cart.products[productId]?.amount || 0;
+  },
+  async updateCart({ commit, state }, { product, amount = 0 }) {
     const newProduct = {
       ...product,
       amount: amount,
