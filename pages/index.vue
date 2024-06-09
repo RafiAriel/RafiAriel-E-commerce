@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 gap-12 justify-items-center p-5 lg:p-10">
+  <div class="grid grid-cols-2 gap-12 justify-items-center p-5 lg:p-9">
     <div v-for="(product, index) in products" :key="index">
       <NuxtLink :to="`products/${product.id}`">
         <Product :product="product" />
