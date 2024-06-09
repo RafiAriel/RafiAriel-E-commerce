@@ -1,29 +1,22 @@
 export const state = () => ({
   cart: {
-    products: [
-      {
-        product: [],
-        amount: 0,
-        totalPrice: 0,
-      },
-    ],
+    products: {}, // contain key = product id, value = { product, amount, totalPrice}
     totalCartPrice: 0,
   },
 });
 
 export const getters = {
   getProducts(state) {
-    return state.products;
+    return state.cart.products;
   },
-
   getTotalCartPrice(state) {
-    return state.totalCartPrice;
+    return state.cart.totalCartPrice;
   },
 };
 
 export const mutations = {
   addProduct(state, product) {
-    state.products.push(product);
+    state.products[product.id] = product;
   },
   setTotalCartPrice(state, totalCartPrice) {
     state.totalCartPrice = totalCartPrice;
@@ -31,7 +24,7 @@ export const mutations = {
 };
 
 export const actions = {
-  addProductToCart({ commit, state }, product, amount) {
+  updateCart({ commit, state }, product, amount) {
     const newProduct = {
       ...product,
       amount: amount,
