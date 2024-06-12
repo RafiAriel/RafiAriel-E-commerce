@@ -8,7 +8,10 @@
     <NuxtLink to="/"> <ShopNowButton /> </NuxtLink>
   </div>
   <div v-else>
-    {{ products }}
+    <div class="grid grid-cols-2 gap-12 justify-items-center p-5 lg:p-9">
+      <div class="text-base lg:text-2xl font-bold">Your Cart</div>
+      <!-- <CartProduct/> -->
+    </div>
   </div>
 </template>
 
