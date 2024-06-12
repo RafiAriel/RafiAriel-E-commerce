@@ -1,16 +1,19 @@
 <template>
   <div
     ref="nav-bar"
-    class="flex bg-gray-300 justify-between p-4 sticky top-0 border-b-2 border-indigo-400 border-opacity-50 mb-20 transition-all"
+    class="flex items-center bg-gray-300 justify-between p-4 sticky top-0 border-b-2 border-indigo-400 border-opacity-50 mb-20 transition-all"
   >
-    <div class="text-lg font-bold tracking-widest leading-loose">
+    <div
+      class="text-lg font-bold tracking-widest leading-loose hover:text-indigo-400"
+    >
       <NuxtLink to="/">HOME</NuxtLink>
     </div>
+    <NuxtLink class="text-lg font-bold hover:text-indigo-400" to="/contact-me"
+      >Contact Me</NuxtLink
+    >
 
     <div class="flex justify-between gap-5">
       <NuxtLink to="/cart"> <CartIcon /> </NuxtLink>
-
-      <NuxtLink to="/user"> <UserIcon /> </NuxtLink>
     </div>
   </div>
 </template>
