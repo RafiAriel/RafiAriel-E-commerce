@@ -1,3 +1,4 @@
+import Vue from "vue";
 export const state = () => ({
   cart: {
     products: {}, // contain key = product id, value = { product, amount, totalPrice}
@@ -9,6 +10,9 @@ export const getters = {
   getProducts(state) {
     return state.cart.products;
   },
+  getUniqueProductQuantity(state) {
+    return Object.keys(state.cart.products).length;
+  },
   getTotalCartPrice(state) {
     return state.cart.totalCartPrice;
   },
@@ -16,7 +20,7 @@ export const getters = {
 
 export const mutations = {
   addProduct(state, product) {
-    state.cart.products[product.id] = product;
+    Vue.set(state.cart.products, product.id, product);
   },
   setTotalCartPrice(state, totalCartPrice) {
     state.cart.totalCartPrice = totalCartPrice;
