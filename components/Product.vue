@@ -48,7 +48,7 @@ export default {
         );
         await this.updateCart({
           product: this.product,
-          amount: currentQuantity + 1,
+          quantity: currentQuantity + 1,
         });
       })(); // invoke immediately
       // move to cart

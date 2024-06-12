@@ -1,7 +1,7 @@
 import Vue from "vue";
 export const state = () => ({
   cart: {
-    products: {}, // contain key = product id, value = { product, amount, totalPrice}
+    products: {}, // contain key = product id, value = { product, quantity, totalPrice}
     totalCartPrice: 0,
   },
 });
@@ -29,13 +29,13 @@ export const mutations = {
 
 export const actions = {
   async getCurrentProductQuantity({ state }, productId) {
-    return state.cart.products[productId]?.amount || 0;
+    return state.cart.products[productId]?.quantity || 0;
   },
-  async updateCart({ commit, state }, { product, amount = 0 }) {
+  async updateCart({ commit, state }, { product, quantity = 0 }) {
     const newProduct = {
       ...product,
-      amount: amount,
-      totalPrice: product.price * amount,
+      quantity: quantity,
+      totalPrice: product.price * quantity,
     };
 
     commit("addProduct", newProduct);
