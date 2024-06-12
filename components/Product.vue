@@ -37,7 +37,12 @@ export default {
       type: Object,
       required: true,
     },
+    productQuantity: {
+      type: Number,
+      default: 1,
+    },
   },
+
   methods: {
     ...mapActions("cart", ["getCurrentProductQuantity", "updateCart"]),
 
@@ -48,11 +53,11 @@ export default {
         );
         await this.updateCart({
           product: this.product,
-          quantity: currentQuantity + 1,
+          quantity: currentQuantity + this.productQuantity,
         });
       })(); // invoke immediately
       // move to cart
-      this.$router.push({ path: "cart" });
+      this.$router.push({ name: "cart" });
       // TODO: add loader - https://loading.io/css/
     },
   },
