@@ -5,8 +5,8 @@
     </button>
     <input
       class="w-14 h-14 text-center text-lg border-solid border-2 rounded border-gray-300"
-      :value="value"
-      @input="$emit('input', $event.target.value)"
+      :value="quantity"
+      @input="$emit('input', $event.target.quantity)"
       type="text"
     />
     <button @click="decrease()" :disabled="disableDecreaseButton">
@@ -19,20 +19,25 @@
 export default {
   name: "Quantity",
   props: ["value"],
+  data() {
+    return {
+      quantity: this.value,
+    };
+  },
   methods: {
     increase() {
-      this.value++;
-      this.$emit("input", this.value);
+      this.quantity++;
+      this.$emit("input", this.quantity);
     },
     decrease() {
-      if (this.value === 1) return;
-      this.value--;
-      this.$emit("input", this.value);
+      if (this.quantity === 1) return;
+      this.quantity--;
+      this.$emit("input", this.quantity);
     },
   },
   computed: {
     disableDecreaseButton() {
-      return this.value === 1;
+      return this.quantity === 1;
     },
   },
 };
