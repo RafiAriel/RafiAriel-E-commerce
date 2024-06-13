@@ -8,9 +8,11 @@
     <NuxtLink to="/"> <ShopNowButton /> </NuxtLink>
   </div>
   <div v-else>
-    <div class="grid grid-cols-2 gap-12 justify-items-center p-5 lg:p-9">
-      <div class="text-base lg:text-2xl font-bold">Your Cart</div>
-      <!-- <CartProduct/> -->
+    <div class="p-5 lg:p-9">
+      <div class="text-xl lg:text-3xl font-bold pb-6">Your Cart</div>
+      <div v-for="(product, index) in products" :key="index">
+        <CartProduct :product="product" />
+      </div>
     </div>
   </div>
 </template>
@@ -18,10 +20,12 @@
 <script>
 import { mapGetters } from "vuex";
 import ShopNowButton from "../components/buttons/ShopNowButton.vue";
+import CartProduct from "../components/CartProduct.vue";
 export default {
   name: "Cart",
   components: {
     ShopNowButton: ShopNowButton,
+    CartProduct: CartProduct,
   },
   computed: {
     ...mapGetters({
