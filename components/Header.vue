@@ -86,4 +86,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.nuxt-link-exact-active {
+  @apply text-indigo-400;
+}
+</style>
