@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 gap-2">
+  <div class="relative grid grid-cols-2 gap-2">
     <img
       class="w-24 lg:w-48 h-24 lg:h-48 justify-self-center"
       :src="product.image"
@@ -9,21 +9,27 @@
         {{ product.title }}
       </div>
       <div class="font-bold text-lg text-red-600">
-        {{ `$${product.price}` }}
+        {{ `$${product.totalPrice}` }}
       </div>
       <div>
         <Quantity v-model="productQuantity" />
       </div>
     </div>
+    <button class="absolute top-0 right-0 hover: hover:text-indigo-400">
+      <XmarkIcon />
+    </button>
   </div>
 </template>
 
 <script scoped>
+import { mapActions } from "vuex";
 import Quantity from "./Quantity.vue";
+import XmarkIcon from "../icons/XmarkIcon.vue";
 export default {
   name: "CartProduct",
   components: {
     Quantity: Quantity,
+    XmarkIcon: XmarkIcon,
   },
   props: {
     product: {
@@ -35,6 +41,17 @@ export default {
     return {
       productQuantity: this.product.quantity,
     };
+  },
+  methods: {
+    ...mapActions("cart", ["updateCart"]),
+  },
+  watch: {
+    productQuantity() {
+      this.updateCart({
+        product: this.product,
+        quantity: this.productQuantity,
+      });
+    },
   },
 };
 </script>
