@@ -8,6 +8,9 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   // darkMode: false, // or 'media' or 'class'
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {},
   },
