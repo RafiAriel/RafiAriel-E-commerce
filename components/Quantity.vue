@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-2">
     <button @click="increase()">
-      <i class="fa-solid fa-circle-plus"></i>
+      <i class="fa-solid fa-circle-plus hover:text-indigo-400"></i>
     </button>
     <input
       class="w-12 h-12 text-center text-lg border-solid border-2 rounded border-gray-300"
@@ -10,7 +10,7 @@
       type="text"
     />
     <button @click="decrease()" :disabled="disableDecreaseButton">
-      <i class="fa-solid fa-circle-minus"></i>
+      <i class="fa-solid fa-circle-minus hover:text-indigo-400"></i>
     </button>
   </div>
 </template>
