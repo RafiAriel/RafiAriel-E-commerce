@@ -2,7 +2,7 @@ import Vue from "vue";
 export const state = () => ({
   cart: {
     products: {}, // contain key = product id, value = { product, quantity, totalPrice}
-    totalCartPrice: 0,
+    totalCartPrice: 0.0,
   },
 });
 
@@ -35,7 +35,7 @@ export const actions = {
     const newProduct = {
       ...product,
       quantity: quantity,
-      totalPrice: product.price * quantity,
+      totalPrice: (product.price * quantity).toFixed(2),
     };
 
     commit("addProduct", newProduct);
