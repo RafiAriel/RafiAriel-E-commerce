@@ -15,7 +15,10 @@
         <Quantity v-model="productQuantity" />
       </div>
     </div>
-    <button class="absolute top-0 right-0 hover: hover:text-indigo-400">
+    <button
+      class="absolute top-0 right-0 hover: hover:text-indigo-400"
+      @click="deleteProduct({ product })"
+    >
       <XmarkIcon />
     </button>
   </div>
@@ -43,7 +46,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("cart", ["updateCart"]),
+    ...mapActions("cart", ["updateCart", "deleteProduct"]),
   },
   watch: {
     productQuantity() {

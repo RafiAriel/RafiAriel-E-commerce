@@ -8,7 +8,11 @@ export const state = () => ({
 
 export const getters = {
   getProducts(state) {
-    return state.cart.products;
+    return Object.fromEntries(
+      Object.entries(state.cart.products).filter(
+        ([key, value]) => Object.keys(value).length !== 0
+      )
+    );
   },
   getUniqueProductQuantity(state) {
     return Object.keys(state.cart.products).length;
@@ -21,6 +25,9 @@ export const getters = {
 export const mutations = {
   addProduct(state, product) {
     Vue.set(state.cart.products, product.id, product);
+  },
+  removeProduct(state, product) {
+    Vue.set(state.cart.products, product.id, {});
   },
   setTotalCartPrice(state, totalCartPrice) {
     state.cart.totalCartPrice = totalCartPrice;
@@ -40,5 +47,8 @@ export const actions = {
 
     commit("addProduct", newProduct);
     commit("setTotalCartPrice", state.totalCartPrice + newProduct.totalPrice);
+  },
+  async deleteProduct({ commit }, { product }) {
+    commit("removeProduct", product);
   },
 };
