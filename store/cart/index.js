@@ -3,6 +3,7 @@ export const state = () => ({
   cart: {
     products: {}, // contain key = product id, value = { product, quantity, totalPrice}
     totalCartPrice: 0.0,
+    shippingPrice: 10.0,
   },
 });
 
@@ -19,6 +20,9 @@ export const getters = {
   },
   getTotalCartPrice(state) {
     return state.cart.totalCartPrice;
+  },
+  getShippingPrice(state) {
+    return state.cart.shippingPrice;
   },
 };
 

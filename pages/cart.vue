@@ -14,6 +14,23 @@
         <CartProduct :product="product" />
       </div>
     </div>
+    <div class="fixed bottom-0 p-5 w-full lg:hidden">
+      <hr class="bg-indigo-400" />
+      <div class="flex flex-col gap-2">
+        <div class="flex justify-between">
+          <div>Subtotal</div>
+          <div>${{ totalProductsPrice }}</div>
+        </div>
+        <div class="flex justify-between">
+          <div>Shipping</div>
+          <div>${{ shippingPrice }}</div>
+        </div>
+        <div class="flex justify-between">
+          <div>Total Price</div>
+          <div>${{ shippingPrice + totalProductsPrice }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,6 +47,8 @@ export default {
   computed: {
     ...mapGetters({
       products: "cart/getProducts",
+      totalProductsPrice: "getTotalCartPrice",
+      shippingPrice: "getShippingPrice",
     }),
     isEmptyProducts() {
       return !Object.keys(this.products).length;
