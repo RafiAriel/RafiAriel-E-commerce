@@ -2,7 +2,6 @@ import Vue from "vue";
 export const state = () => ({
   cart: {
     products: {}, // contain key = product id, value = { product, quantity, totalPrice}
-    totalCartPrice: 0.0,
     shippingPrice: 10.0,
   },
 });
@@ -18,8 +17,14 @@ export const getters = {
   getUniqueProductQuantity(state, getters) {
     return Object.keys(getters.getProducts).length;
   },
-  getTotalCartPrice(state) {
-    return state.cart.totalCartPrice;
+  getTotalCartPrice(state, getters) {
+    let sum = 0.0;
+
+    for (const productId in getters.getProducts) {
+      const product = getters.getProducts[productId];
+      sum += parseFloat(product.totalPrice);
+    }
+    return sum;
   },
   getShippingPrice(state) {
     return state.cart.shippingPrice;

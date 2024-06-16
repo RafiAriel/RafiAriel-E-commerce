@@ -47,8 +47,8 @@ export default {
   computed: {
     ...mapGetters({
       products: "cart/getProducts",
-      totalProductsPrice: "getTotalCartPrice",
-      shippingPrice: "getShippingPrice",
+      totalProductsPrice: "cart/getTotalCartPrice",
+      shippingPrice: "cart/getShippingPrice",
     }),
     isEmptyProducts() {
       return !Object.keys(this.products).length;
