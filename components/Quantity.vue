@@ -11,8 +11,11 @@
     />
     <button @click="decrease()" :disabled="disableDecreaseButton">
       <i
-        class="fa-solid fa-circle-minus hover:text-indigo-400"
-        :class="{ 'text-gray-400': disableDecreaseButton }"
+        class="fa-solid fa-circle-minus"
+        :class="{
+          'text-gray-400': disableDecreaseButton,
+          'hover:text-indigo-400': !disableDecreaseButton,
+        }"
       ></i>
     </button>
   </div>
