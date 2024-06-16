@@ -10,7 +10,10 @@
       type="text"
     />
     <button @click="decrease()" :disabled="disableDecreaseButton">
-      <i class="fa-solid fa-circle-minus hover:text-indigo-400"></i>
+      <i
+        class="fa-solid fa-circle-minus hover:text-indigo-400"
+        :class="{ 'text-gray-400': disableDecreaseButton }"
+      ></i>
     </button>
   </div>
 </template>
