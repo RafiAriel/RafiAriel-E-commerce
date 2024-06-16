@@ -14,8 +14,8 @@ export const getters = {
       )
     );
   },
-  getUniqueProductQuantity(state) {
-    return Object.keys(state.cart.products).length;
+  getUniqueProductQuantity(state, getters) {
+    return Object.keys(getters.getProducts).length;
   },
   getTotalCartPrice(state) {
     return state.cart.totalCartPrice;
