@@ -7,15 +7,19 @@
 
     <NuxtLink to="/"> <ShopNowButton /> </NuxtLink>
   </div>
-  <div v-else>
-    <div class="flex flex-col gap-6 p-5 lg:p-9">
+  <div v-else class="lg:grid lg:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 gap-6 p-5 lg:p-9">
       <div class="text-xl lg:text-3xl font-bold">Your Cart</div>
       <div v-for="(product, index) in products" :key="index">
         <CartProduct :product="product" />
       </div>
     </div>
-    <div class="px-5 pt-5 pb-2 w-full lg:hidden">
-      <hr class="bg-indigo-400" />
+    <div class="px-5 pt-5 pb-2 w-full lg:fixed lg:bottom-0 lg:w-1/2 lg:right-0">
+      <HorizontalLine class="hidden lg:block" />
+      <div class="text-xl lg:text-3xl font-bold py-1 lg:py-3">
+        Order Summary
+      </div>
+      <HorizontalLine />
       <div class="flex flex-col gap-2">
         <div class="flex justify-between">
           <div>Subtotal</div>
@@ -29,10 +33,10 @@
           <div>Total Price</div>
           <div>${{ shippingPrice + totalProductsPrice }}</div>
         </div>
-        <div class="flex gap-2 py-4 justify-center bg-yellow-300">
+        <button class="flex gap-2 py-4 justify-center bg-yellow-300">
           <div class="text-xl font-bold">Place Order</div>
           <CircleRightButton />
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -42,7 +46,7 @@
 import { mapGetters } from "vuex";
 import ShopNowButton from "../components/buttons/ShopNowButton.vue";
 import CircleRightButton from "../components/buttons/CircleRightButton.vue";
-
+import HorizontalLine from "../components/lines/HorizontalLine.vue";
 import CartProduct from "../components/CartProduct.vue";
 export default {
   name: "Cart",
@@ -50,6 +54,7 @@ export default {
     ShopNowButton: ShopNowButton,
     CartProduct: CartProduct,
     CircleRightButton: CircleRightButton,
+    HorizontalLine: HorizontalLine,
   },
   computed: {
     ...mapGetters({
