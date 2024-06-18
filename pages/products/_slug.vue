@@ -1,6 +1,7 @@
 <template>
   <div class="grid grid-cols-1 gap-6 justify-items-center p-5 lg:p-9">
     <Product :product="chosenProduct" :productQuantity="productQuantity" />
+    <!--TODO: there is a bug here. fix it-->
     <Quantity v-model="productQuantity" />
   </div>
 </template>
