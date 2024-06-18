@@ -14,7 +14,7 @@
         <CartProduct :product="product" />
       </div>
     </div>
-    <div class="fixed bottom-0 px-5 pt-5 pb-2 w-full lg:hidden">
+    <div class="px-5 pt-5 pb-2 w-full lg:hidden">
       <hr class="bg-indigo-400" />
       <div class="flex flex-col gap-2">
         <div class="flex justify-between">
