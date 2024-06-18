@@ -15,7 +15,6 @@
       </div>
     </div>
     <div class="px-5 pt-5 pb-2 w-full lg:fixed lg:bottom-0 lg:w-1/2 lg:right-0">
-      <HorizontalLine class="hidden lg:block" />
       <div class="text-xl lg:text-3xl font-bold py-1 lg:py-3">
         Order Summary
       </div>
@@ -33,7 +32,9 @@
           <div>Total Price</div>
           <div>${{ shippingPrice + totalProductsPrice }}</div>
         </div>
-        <button class="flex gap-2 py-4 justify-center bg-yellow-300">
+        <button
+          class="flex gap-2 items-center py-4 justify-center bg-yellow-300"
+        >
           <div class="text-xl font-bold">Place Order</div>
           <CircleRightButton />
         </button>
