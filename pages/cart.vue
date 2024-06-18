@@ -8,7 +8,7 @@
     <NuxtLink to="/"> <ShopNowButton /> </NuxtLink>
   </div>
   <div v-else class="lg:grid lg:grid-cols-2 gap-6">
-    <div class="grid grid-cols-1 gap-6 p-5 lg:p-9">
+    <div class="grid grid-cols-1 gap-7 p-5 lg:p-9">
       <div class="text-xl lg:text-3xl font-bold">Your Cart</div>
       <div v-for="(product, index) in products" :key="index">
         <CartProduct :product="product" />
