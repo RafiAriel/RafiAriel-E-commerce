@@ -12,6 +12,8 @@
         {{ `$${product.totalPrice}` }}
       </div>
       <div>
+        <!--TODO: there is a bug here. fix it-->
+
         <Quantity v-model="productQuantity" />
       </div>
     </div>
