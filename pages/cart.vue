@@ -14,7 +14,7 @@
         <CartProduct :product="product" />
       </div>
     </div>
-    <div class="fixed bottom-0 p-5 w-full lg:hidden">
+    <div class="fixed bottom-0 px-5 pt-5 pb-2 w-full lg:hidden">
       <hr class="bg-indigo-400" />
       <div class="flex flex-col gap-2">
         <div class="flex justify-between">
@@ -25,9 +25,13 @@
           <div>Shipping</div>
           <div>${{ shippingPrice }}</div>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between font-bold">
           <div>Total Price</div>
           <div>${{ shippingPrice + totalProductsPrice }}</div>
+        </div>
+        <div class="flex gap-2 py-4 justify-center bg-yellow-300">
+          <div class="text-xl font-bold">Place Order</div>
+          <CircleRightButton />
         </div>
       </div>
     </div>
@@ -37,12 +41,15 @@
 <script>
 import { mapGetters } from "vuex";
 import ShopNowButton from "../components/buttons/ShopNowButton.vue";
+import CircleRightButton from "../components/buttons/CircleRightButton.vue";
+
 import CartProduct from "../components/CartProduct.vue";
 export default {
   name: "Cart",
   components: {
     ShopNowButton: ShopNowButton,
     CartProduct: CartProduct,
+    CircleRightButton: CircleRightButton,
   },
   computed: {
     ...mapGetters({
