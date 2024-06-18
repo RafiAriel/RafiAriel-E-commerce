@@ -35,7 +35,7 @@
         <button
           class="flex gap-2 items-center py-4 justify-center bg-yellow-300"
         >
-          <div class="text-xl font-bold">Place Order</div>
+          <div class="text-xl font-bold">Checkout</div>
           <CircleRightButton />
         </button>
       </div>
