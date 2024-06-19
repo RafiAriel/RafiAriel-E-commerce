@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       productQuantity: this.product.quantity,
+      timer: null,
     };
   },
   methods: {
@@ -50,6 +51,7 @@ export default {
   },
   watch: {
     productQuantity() {
+      clearTimeout(this.timer);
       // Update cart according new quantity
       this.updateCart({
         product: this.product,
@@ -57,7 +59,7 @@ export default {
       });
       // If user do not set new quantity after few sec, delete product
       if (this.productQuantity == "") {
-        setTimeout(() => {
+        this.timer = setTimeout(() => {
           this.deleteProduct({ product: this.product });
         }, 3000);
       }
