@@ -17,7 +17,11 @@
     </div>
 
     <div>
-      <AddToCartButton @click.prevent="addToCart()" v-bind="$attrs" />
+      <AddToCartButton
+        @click.prevent="addToCart()"
+        v-bind="$attrs"
+        :disabled="!productQuantity"
+      />
     </div>
   </div>
 </template>

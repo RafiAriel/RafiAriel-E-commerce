@@ -43,7 +43,8 @@ export default {
   },
   computed: {
     disableDecreaseButton() {
-      return this.quantity === 1;
+      if (this.quantity > 1) return false;
+      return true;
     },
   },
   watch: {
