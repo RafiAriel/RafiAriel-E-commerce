@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- sort by vue select -->
-    <div class="grid grid-cols-12">
+    <!-- <div class="grid grid-cols-12">
       <div class="col-span-7 lg:col-span-3 gap-3 p-4">
         <div class="text-base lg:text-xl font-bold">Sort by:</div>
         <v-select
@@ -14,10 +14,10 @@
       </div>
 
       <div></div>
-    </div>
+    </div> -->
 
     <!-- grid grid-cols-2 gap-12 justify-items-center p-5 lg:p-9" -->
-    <div ref="swiper" class="swiper overflow-x-hidden">
+    <div ref="swiper" class="swiper mt-20 overflow-x-hidden">
       <div class="swiper-wrapper">
         <!-- Slides -->
         <div
