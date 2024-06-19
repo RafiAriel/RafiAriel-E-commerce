@@ -6,7 +6,7 @@
     <input
       class="w-12 h-12 text-center text-lg border-solid border-2 rounded border-gray-300"
       :value="quantity"
-      @input="$emit('input', $event.target.quantity)"
+      @input="$emit('input', $event.target.value)"
       type="text"
     />
     <button @click="decrease()" :disabled="disableDecreaseButton">
@@ -44,6 +44,11 @@ export default {
   computed: {
     disableDecreaseButton() {
       return this.quantity === 1;
+    },
+  },
+  watch: {
+    value(newValue) {
+      this.quantity = newValue;
     },
   },
 };

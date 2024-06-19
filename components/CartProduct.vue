@@ -12,9 +12,7 @@
         {{ `$${product.totalPrice}` }}
       </div>
       <div>
-        <!--TODO: there is a bug here. fix it-->
-
-        <Quantity v-model="productQuantity" />
+        <Quantity v-model.number="productQuantity" />
       </div>
     </div>
     <button
@@ -52,10 +50,17 @@ export default {
   },
   watch: {
     productQuantity() {
+      // Update cart according new quantity
       this.updateCart({
         product: this.product,
         quantity: this.productQuantity,
       });
+      // If user do not set new quantity after few sec, delete product
+      if (this.productQuantity == "") {
+        setTimeout(() => {
+          this.deleteProduct({ product: this.product });
+        }, 3000);
+      }
     },
   },
 };
