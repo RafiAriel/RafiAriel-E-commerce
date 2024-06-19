@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isEmptyProducts"
-    class="flex flex-col gap-4 lg:gap-8 justify-center items-center text-center py-20 lg:py-30 font-bold text-xl lg:text-4xl bg-gray-300 bg-opacity-80"
+    class="flex flex-col gap-4 lg:gap-8 justify-center items-center text-center py-20 lg:py-30 mt-24 font-bold text-xl lg:text-4xl bg-gray-300 bg-opacity-80"
   >
     <div>Your cart is empty</div>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="grid grid-cols-10">
-      <div class="col-span-6 gap-3 p-4">
+    <div class="grid grid-cols-12">
+      <div class="col-span-7 lg:col-span-3 gap-3 p-4">
         <div class="text-base lg:text-xl font-bold">Sort by:</div>
         <v-select
           :options="sortOptions"
