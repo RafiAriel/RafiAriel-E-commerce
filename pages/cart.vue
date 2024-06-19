@@ -22,7 +22,7 @@
       <div class="flex flex-col gap-2">
         <div class="flex justify-between">
           <div>Subtotal</div>
-          <div>${{ totalProductsPrice }}</div>
+          <div>${{ totalProductsPrice.toFixed(2) }}</div>
         </div>
         <div class="flex justify-between">
           <div>Shipping</div>
@@ -30,7 +30,7 @@
         </div>
         <div class="flex justify-between font-bold">
           <div>Total Price</div>
-          <div>${{ shippingPrice + totalProductsPrice }}</div>
+          <div>${{ (shippingPrice + totalProductsPrice).toFixed(2) }}</div>
         </div>
         <button
           class="flex gap-2 items-center py-4 justify-center bg-yellow-300"
