@@ -16,6 +16,23 @@
       <div></div>
     </div> -->
 
+    <div class="flex gap-2">
+      <button
+        class="view-button"
+        :class="{ 'text-indigo-400': !isSwiperView }"
+        @click="isSwiperView = !isSwiperView"
+      >
+        <GridIcon />
+      </button>
+      <button
+        class="view-button"
+        :class="{ 'text-indigo-400': isSwiperView }"
+        @click="isSwiperView = !isSwiperView"
+      >
+        <SwiperViewIcon />
+      </button>
+    </div>
+
     <div
       ref="swiper"
       class="mt-20 overflow-x-hidden"
@@ -59,16 +76,20 @@ SwiperCore.use([Navigation, Pagination]);
 
 import { mapGetters } from "vuex";
 import Product from "../components/Product.vue";
+import SwiperViewIcon from "../icons/SwiperViewIcon.vue";
+import GridIcon from "../icons/GridIcon.vue";
 
 export default {
   name: "IndexPage",
   components: {
     Product: Product,
+    SwiperViewIcon: SwiperViewIcon,
+    GridIcon: GridIcon,
   },
   data() {
     return {
       selectedSortValue: "",
-      isSwiperView: false,
+      isSwiperView: true,
     };
   },
   mounted() {
@@ -79,6 +100,12 @@ export default {
       loop: true,
       centeredSlides: true,
       spaceBetween: 10,
+
+      on: {
+        init: function () {
+          console.log("swiper initialized");
+        },
+      },
 
       // Responsive breakpoints
       breakpoints: {
@@ -163,10 +190,12 @@ export default {
 .v-select {
   @apply text-xs lg:text-lg;
 }
-
 .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.view-button {
+  @apply w-10 h-10 hover:text-indigo-400 focus:text-indigo-400 focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50;
 }
 </style>
