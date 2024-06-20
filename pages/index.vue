@@ -16,21 +16,30 @@
       <div></div>
     </div> -->
 
-    <!-- grid grid-cols-2 gap-12 justify-items-center p-5 lg:p-9" -->
-    <div ref="swiper" class="swiper mt-20 overflow-x-hidden">
-      <div class="swiper-wrapper">
+    <div
+      ref="swiper"
+      class="mt-20 overflow-x-hidden"
+      :class="[isSwiperView ? 'swiper' : 'px-5 lg:px-10']"
+    >
+      <div
+        :class="[
+          isSwiperView
+            ? 'swiper-wrapper'
+            : 'grid grid-cols-2 gap-12 justify-items-center',
+        ]"
+      >
         <!-- Slides -->
         <div
-          class="swiper-slide"
+          :class="{ 'swiper-slide': isSwiperView }"
           v-for="(product, index) in sortedProducts"
           :key="index"
         >
           <Product :product="product" />
         </div>
       </div>
-      <div class="swiper-pagination pt-5"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div v-if="isSwiperView" class="swiper-pagination pt-5"></div>
+      <div v-if="isSwiperView" class="swiper-button-prev"></div>
+      <div v-if="isSwiperView" class="swiper-button-next"></div>
     </div>
   </div>
 </template>
@@ -59,6 +68,7 @@ export default {
   data() {
     return {
       selectedSortValue: "",
+      isSwiperView: false,
     };
   },
   mounted() {
