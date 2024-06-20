@@ -20,43 +20,44 @@
       <button
         class="view-button"
         :class="{ 'text-indigo-400': !isSwiperView }"
-        @click="isSwiperView = !isSwiperView"
+        @click="isSwiperView = false"
       >
         <GridIcon />
       </button>
       <button
         class="view-button"
         :class="{ 'text-indigo-400': isSwiperView }"
-        @click="isSwiperView = !isSwiperView"
+        @click="isSwiperView = true"
       >
         <SwiperViewIcon />
       </button>
+      {{ isSwiperView }}
     </div>
 
-    <div
-      ref="swiper"
-      class="mt-20 overflow-x-hidden"
-      :class="[isSwiperView ? 'swiper' : 'px-5 lg:px-10']"
-    >
-      <div
-        :class="[
-          isSwiperView
-            ? 'swiper-wrapper'
-            : 'grid grid-cols-2 gap-12 justify-items-center',
-        ]"
-      >
-        <!-- Slides -->
-        <div
-          :class="{ 'swiper-slide': isSwiperView }"
-          v-for="(product, index) in sortedProducts"
-          :key="index"
-        >
+    <div v-if="!isSwiperView" class="mt-20 px-5 lg:px-10">
+      <div class="grid grid-cols-2 gap-12 justify-items-center">
+        <div v-for="(product, index) in sortedProducts" :key="index">
           <Product :product="product" />
         </div>
       </div>
-      <div v-if="isSwiperView" class="swiper-pagination pt-5"></div>
-      <div v-if="isSwiperView" class="swiper-button-prev"></div>
-      <div v-if="isSwiperView" class="swiper-button-next"></div>
+    </div>
+
+    <div class="mt-20 overflow-x-hidden">
+      <div v-if="isSwiperView" ref="swiper" class="swiper">
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div
+            class="swiper-slide"
+            v-for="(product, index) in sortedProducts"
+            :key="index"
+          >
+            <Product :product="product" />
+          </div>
+        </div>
+        <div v-if="isSwiperView" class="swiper-pagination pt-5"></div>
+        <div v-if="isSwiperView" class="swiper-button-prev"></div>
+        <div v-if="isSwiperView" class="swiper-button-next"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -96,16 +97,9 @@ export default {
     new Swiper(this.$refs.swiper, {
       // configure Swiper to use modules
       modules: [Navigation, Pagination],
-      // Optional parameters
-      loop: true,
+      // parameters
       centeredSlides: true,
       spaceBetween: 10,
-
-      on: {
-        init: function () {
-          console.log("swiper initialized");
-        },
-      },
 
       // Responsive breakpoints
       breakpoints: {
