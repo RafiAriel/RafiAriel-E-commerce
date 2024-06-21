@@ -41,22 +41,24 @@
       </div>
     </div>
 
-    <div class="mt-20 overflow-x-hidden">
-      <div v-show="isSwiperView" ref="swiper" class="swiper">
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-          <div
-            class="swiper-slide"
-            v-for="(product, index) in sortedProducts"
-            :key="index"
-          >
-            <Product :product="product" />
-          </div>
+    <div
+      v-show="isSwiperView"
+      ref="swiper"
+      class="swiper mt-20 overflow-x-hidden"
+    >
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div
+          class="swiper-slide"
+          v-for="(product, index) in sortedProducts"
+          :key="index"
+        >
+          <Product :product="product" />
         </div>
-        <div v-show="isSwiperView" class="swiper-pagination pt-5"></div>
-        <div v-show="isSwiperView" class="swiper-button-prev"></div>
-        <div v-show="isSwiperView" class="swiper-button-next"></div>
       </div>
+      <div v-show="isSwiperView" class="swiper-pagination pt-5"></div>
+      <div v-show="isSwiperView" class="swiper-button-prev"></div>
+      <div v-show="isSwiperView" class="swiper-button-next"></div>
     </div>
   </div>
 </template>
@@ -97,6 +99,7 @@ export default {
       // configure Swiper to use modules
       modules: [Navigation, Pagination],
       // parameters
+      loop: true,
       centeredSlides: true,
       spaceBetween: 10,
       observer: true,
