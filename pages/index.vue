@@ -20,21 +20,20 @@
       <button
         class="view-button"
         :class="{ 'text-indigo-400': !isSwiperView }"
-        @click="isSwiperView = false"
+        @click="setIsSwiperValue(false)"
       >
         <GridIcon />
       </button>
       <button
         class="view-button"
         :class="{ 'text-indigo-400': isSwiperView }"
-        @click="isSwiperView = true"
+        @click="setIsSwiperValue(true)"
       >
         <SwiperViewIcon />
       </button>
-      {{ isSwiperView }}
     </div>
 
-    <div v-if="!isSwiperView" class="mt-20 px-5 lg:px-10">
+    <div v-show="!isSwiperView" class="mt-20 px-5 lg:px-10">
       <div class="grid grid-cols-2 gap-12 justify-items-center">
         <div v-for="(product, index) in sortedProducts" :key="index">
           <Product :product="product" />
@@ -43,7 +42,7 @@
     </div>
 
     <div class="mt-20 overflow-x-hidden">
-      <div v-if="isSwiperView" ref="swiper" class="swiper">
+      <div v-show="isSwiperView" ref="swiper" class="swiper">
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div
@@ -54,9 +53,9 @@
             <Product :product="product" />
           </div>
         </div>
-        <div v-if="isSwiperView" class="swiper-pagination pt-5"></div>
-        <div v-if="isSwiperView" class="swiper-button-prev"></div>
-        <div v-if="isSwiperView" class="swiper-button-next"></div>
+        <div v-show="isSwiperView" class="swiper-pagination pt-5"></div>
+        <div v-show="isSwiperView" class="swiper-button-prev"></div>
+        <div v-show="isSwiperView" class="swiper-button-next"></div>
       </div>
     </div>
   </div>
@@ -75,7 +74,7 @@ import "swiper/swiper-bundle.css";
 import SwiperCore, { Navigation, Pagination } from "swiper/core";
 SwiperCore.use([Navigation, Pagination]);
 
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import Product from "../components/Product.vue";
 import SwiperViewIcon from "../icons/SwiperViewIcon.vue";
 import GridIcon from "../icons/GridIcon.vue";
@@ -89,17 +88,19 @@ export default {
   },
   data() {
     return {
+      swiper: null,
       selectedSortValue: "",
-      isSwiperView: true,
     };
   },
   mounted() {
-    new Swiper(this.$refs.swiper, {
+    this.swiper = new Swiper(this.$refs.swiper, {
       // configure Swiper to use modules
       modules: [Navigation, Pagination],
       // parameters
       centeredSlides: true,
       spaceBetween: 10,
+      observer: true,
+      observeParents: true,
 
       // Responsive breakpoints
       breakpoints: {
@@ -132,10 +133,13 @@ export default {
       },
     });
   },
-
+  methods: {
+    ...mapMutations(["setIsSwiperValue"]),
+  },
   computed: {
     ...mapGetters({
       products: "products/getProducts",
+      isSwiperView: "getIsSwiperView",
     }),
     sortedProducts() {
       let sortedArray = JSON.parse(JSON.stringify(this.products));
