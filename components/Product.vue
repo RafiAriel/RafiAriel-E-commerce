@@ -1,6 +1,9 @@
 <template>
   <div class="grid grid-cols-1 gap-2 lg:gap-4">
-    <NuxtLink :to="{ name: 'products-slug', params: { slug: product.id } }">
+    <NuxtLink
+      :to="{ name: 'products-slug', params: { slug: product.id } }"
+      class="justify-self-center"
+    >
       <img
         class="w-24 lg:w-48 h-24 lg:h-48 justify-self-center"
         :src="product.image"
