@@ -1,21 +1,5 @@
 <template>
   <div>
-    <!-- sort by vue select -->
-    <!-- <div class="grid grid-cols-12">
-      <div class="col-span-7 lg:col-span-3 gap-3 p-4">
-        <div class="text-base lg:text-xl font-bold">Sort by:</div>
-        <v-select
-          :options="sortOptions"
-          :reduce="(title) => title.code"
-          label="title"
-          v-model="selectedSortValue"
-          placeholder="options..."
-        />
-      </div>
-
-      <div></div>
-    </div> -->
-
     <div class="flex gap-2">
       <button
         class="view-button"
