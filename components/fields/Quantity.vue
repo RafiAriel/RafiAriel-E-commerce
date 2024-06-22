@@ -4,7 +4,7 @@
       <i class="fa-solid fa-circle-plus hover:text-indigo-400"></i>
     </button>
     <input
-      class="w-12 h-12 text-center text-lg border-solid border-2 rounded border-gray-300"
+      class="input-field w-12 h-12 text-lg rounded text-center"
       :value="quantity"
       @input="$emit('input', $event.target.value)"
       type="text"

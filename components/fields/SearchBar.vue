@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <input
-      class="border-2 pl-8 border-gray-300 hover:border-gray-400 transition-colors rounded-md w-full py-2 leading-tight focus:outline-none focus:ring-indigo-400 focus:border-indigo-400"
+      class="input-field pl-8 rounded-md w-full py-2"
       :value="value"
       @input="$emit('input', $event.target.value)"
       type="text"

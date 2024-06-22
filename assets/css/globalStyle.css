@@ -25,3 +25,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-700;
 }
+
+.input-field {
+  @apply border-2 border-gray-300 hover:border-gray-400 transition-colors leading-tight focus:outline-none focus:ring-indigo-400 focus:border-indigo-400;
+}
