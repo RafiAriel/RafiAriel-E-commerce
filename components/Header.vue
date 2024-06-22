@@ -8,9 +8,6 @@
     >
       <NuxtLink to="/">HOME</NuxtLink>
     </div>
-    <NuxtLink class="text-lg font-bold hover:text-indigo-400" to="/contact-me"
-      >Contact Me</NuxtLink
-    >
 
     <div class="flex justify-between gap-5">
       <NuxtLink to="/cart"> <CartIcon /> </NuxtLink>
@@ -30,16 +27,18 @@ export default {
   data() {
     return {
       didScroll: false,
+      scrollInterval: null,
       lastScrollTop: 0,
       delta: 5,
       navbarHeight: 0,
       scrollYFromTop: 0,
+      searchValue: "",
     };
   },
   mounted() {
     this.navbarHeight = this.$el.offsetHeight;
 
-    let scrollInterval = setInterval(() => {
+    this.scrollInterval = setInterval(() => {
       if (this.didScroll) {
         this.scrollYFromTop = scrollY;
         this.hasScrolled();
@@ -78,7 +77,6 @@ export default {
       this.lastScrollTop = this.scrollYFromTop;
     },
   },
-
   destroyed() {
     removeEventListener("scroll", () => {});
     clearInterval(this.scrollInterval);
