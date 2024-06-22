@@ -15,53 +15,69 @@
       >
         <SwiperViewIcon />
       </button>
+
+      <SearchBar v-model="searchValue" />
     </div>
 
-    <div v-show="!isSwiperView" class="mt-20 px-5 lg:px-10">
+    <div
+      v-show="!isSwiperView && cProducts.length"
+      class="mt-16 mb-10 px-5 lg:px-10"
+    >
       <div class="grid grid-cols-2 gap-12 justify-items-center">
-        <div v-for="(product, index) in sortedProducts" :key="index">
+        <div v-for="(product, index) in cProducts" :key="index">
           <Product :product="product" />
         </div>
       </div>
     </div>
-
     <div
-      v-show="isSwiperView"
+      v-show="isSwiperView && cProducts.length"
       ref="swiper"
-      class="swiper mt-20 overflow-x-hidden"
+      class="swiper mt-16 mb-10 overflow-x-hidden"
     >
       <div class="swiper-wrapper">
         <!-- Slides -->
         <div
           class="swiper-slide"
-          v-for="(product, index) in sortedProducts"
+          v-for="(product, index) in cProducts"
           :key="index"
         >
           <Product :product="product" />
         </div>
       </div>
       <div v-show="isSwiperView" class="swiper-pagination pt-5"></div>
-      <div v-show="isSwiperView" class="swiper-button-prev"></div>
-      <div v-show="isSwiperView" class="swiper-button-next"></div>
+      <div
+        v-show="isSwiperView && cProducts.length"
+        class="swiper-button-prev"
+      ></div>
+      <div
+        v-show="isSwiperView && cProducts.length"
+        class="swiper-button-next"
+      ></div>
+    </div>
+    <div
+      v-if="!cProducts.length"
+      class="text-center py-16 lg:py-24 mt-24 font-bold text-xl lg:text-4xl bg-gray-300 bg-opacity-80"
+    >
+      No Products Found
     </div>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-
-// vue-select
-import vSelect from "vue-select";
-Vue.component("v-select", vSelect);
-import "vue-select/dist/vue-select.css";
-
+// swiper
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
 import SwiperCore, { Navigation, Pagination } from "swiper/core";
 SwiperCore.use([Navigation, Pagination]);
 
+// vuex
 import { mapGetters, mapMutations } from "vuex";
+
+// components
 import Product from "../components/Product.vue";
+import SearchBar from "../components/fields/SearchBar.vue";
+
+// icons
 import SwiperViewIcon from "../icons/SwiperViewIcon.vue";
 import GridIcon from "../icons/GridIcon.vue";
 
@@ -71,101 +87,78 @@ export default {
     Product: Product,
     SwiperViewIcon: SwiperViewIcon,
     GridIcon: GridIcon,
+    SearchBar: SearchBar,
   },
   data() {
     return {
       swiper: null,
-      selectedSortValue: "",
+      searchValue: "",
     };
   },
   mounted() {
-    this.swiper = new Swiper(this.$refs.swiper, {
-      // configure Swiper to use modules
-      modules: [Navigation, Pagination],
-      // parameters
-      loop: true,
-      centeredSlides: true,
-      spaceBetween: 10,
-      observer: true,
-      observeParents: true,
-
-      // Responsive breakpoints
-      breakpoints: {
-        // when window width is >= 320px
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        // when window width is >= 480px
-        480: {
-          slidesPerView: 2,
-          spaceBetween: 30,
-        },
-        640: {
-          slidesPerView: 3,
-          spaceBetween: 40,
-        },
-      },
-
-      // If we need pagination
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
+    this.initSwiper();
   },
   methods: {
     ...mapMutations(["setIsSwiperValue"]),
+    initSwiper() {
+      this.swiper = new Swiper(this.$refs.swiper, {
+        // configure Swiper to use modules
+        modules: [Navigation, Pagination],
+        // parameters
+        spaceBetween: 10,
+        observer: true,
+        observeParents: true,
+
+        // Responsive breakpoints
+        breakpoints: {
+          // when window width is >= 320px
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          // when window width is >= 480px
+          480: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+          640: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+        },
+
+        // If we need pagination
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+
+        // Navigation arrows
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    },
   },
   computed: {
     ...mapGetters({
       products: "products/getProducts",
       isSwiperView: "getIsSwiperView",
     }),
-    sortedProducts() {
-      let sortedArray = JSON.parse(JSON.stringify(this.products));
-      // without any filtering
-      if (this.selectedSortValue == "") return sortedArray;
+    cProducts() {
+      let products = JSON.parse(JSON.stringify(this.products));
 
-      // sort by top rated
-      if (this.selectedSortValue == 3) {
-        sortedArray = sortedArray.sort(function (p1, p2) {
-          return -(p1.rating.rate - p2.rating.rate);
+      if (this.searchValue) {
+        return products.filter((item) => {
+          return this.searchValue
+            .toLowerCase()
+            .split(" ")
+            .every((v) => item.title.toLowerCase().includes(v));
         });
       }
-      // sort from lowest to highest
-      if (this.selectedSortValue == 1 || this.selectedSortValue == 2) {
-        sortedArray = sortedArray.sort(function (p1, p2) {
-          return p1.price - p2.price;
-        });
-      }
-      // if option of lowest to highest selected
-      if (this.selectedSortValue == 1) {
-        sortedArray = sortedArray.reverse();
-      }
-      return sortedArray;
-    },
-    sortOptions() {
-      return [
-        {
-          code: 1,
-          title: "Price (High to Low)",
-        },
-        {
-          code: 2,
-          title: "Price (Low to High)",
-        },
-        {
-          code: 3,
-          title: "Top Rated",
-        },
-      ];
+
+      return products;
     },
   },
 };
