@@ -7,7 +7,7 @@
 
 <script>
 import Product from "../../components/Product.vue";
-import Quantity from "../../components/Quantity.vue";
+import Quantity from "../../components/fields/Quantity.vue";
 export default {
   name: "product",
   components: {

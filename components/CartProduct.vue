@@ -26,7 +26,7 @@
 
 <script scoped>
 import { mapActions } from "vuex";
-import Quantity from "./Quantity.vue";
+import Quantity from "./fields/Quantity.vue";
 import XmarkIcon from "../icons/XmarkIcon.vue";
 export default {
   name: "CartProduct",
