@@ -2,19 +2,29 @@
   <div>
     <i
       class="badge fa-solid fa-cart-shopping"
-      :value="getUniqueProductQuantity"
+      :value="uniqueProductQuantity"
     ></i>
   </div>
 </template>
 
 <script scoped>
-import { mapGetters } from "vuex";
 export default {
   name: "CartIcon",
-  computed: {
-    ...mapGetters({
-      getUniqueProductQuantity: "cart/getUniqueProductQuantity",
-    }),
+  data() {
+    return {
+      uniqueProductQuantity: "",
+      interval: null,
+    };
+  },
+  mounted() {
+    this.interval = setInterval(() => {
+      this.uniqueProductQuantity = Object.keys(
+        this.$store.getters["cart/getProducts"]
+      ).length;
+    }, 500);
+  },
+  destroyed() {
+    clearInterval(this.interval);
   },
 };
 </script>

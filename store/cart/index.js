@@ -41,6 +41,12 @@ export const mutations = {
   setTotalCartPrice(state, totalCartPrice) {
     state.cart.totalCartPrice = totalCartPrice;
   },
+  setCart(state, cart) {
+    state.cart = cart;
+  },
+  updateLocalStorageCart(state) {
+    localStorage.setItem("cart", JSON.stringify(state.cart));
+  },
 };
 
 export const actions = {
@@ -56,8 +62,10 @@ export const actions = {
 
     commit("addProduct", newProduct);
     commit("setTotalCartPrice", state.totalCartPrice + newProduct.totalPrice);
+    commit("updateLocalStorageCart");
   },
   async deleteProduct({ commit }, { product }) {
     commit("removeProduct", product);
+    commit("updateLocalStorageCart");
   },
 };

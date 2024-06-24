@@ -6,6 +6,10 @@ export const actions = {
   async nuxtServerInit({ dispatch }) {
     await dispatch("products/fetchProducts");
   },
+  nuxtClientInit({ commit }, { req }) {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    commit("cart/setCart", cart);
+  },
 };
 
 export const getters = {
