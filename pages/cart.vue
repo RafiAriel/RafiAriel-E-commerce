@@ -1,6 +1,9 @@
 <template>
+  <div v-if="showSpinnerRing" class="fixed top-1/2 left-1/2 -translate-x-1/2">
+    <SpinnerRing />
+  </div>
   <div
-    v-if="isEmptyProducts"
+    v-else-if="isEmptyProducts"
     class="flex flex-col gap-4 lg:gap-8 justify-center items-center text-center py-20 lg:py-30 mt-24 font-bold text-xl lg:text-4xl bg-gray-300 bg-opacity-80"
   >
     <div>Your cart is empty</div>
@@ -49,6 +52,7 @@ import ShopNowButton from "../components/buttons/ShopNowButton.vue";
 import CircleRightButton from "../components/buttons/CircleRightButton.vue";
 import HorizontalLine from "../components/lines/HorizontalLine.vue";
 import CartProduct from "../components/CartProduct.vue";
+import SpinnerRing from "../components/SpinnerRing.vue";
 export default {
   name: "Cart",
   components: {
@@ -56,6 +60,21 @@ export default {
     CartProduct: CartProduct,
     CircleRightButton: CircleRightButton,
     HorizontalLine: HorizontalLine,
+    SpinnerRing: SpinnerRing,
+  },
+  async asyncData() {
+    let showSpinnerRing = false;
+    if (process.server) {
+      showSpinnerRing = true;
+    }
+    return {
+      showSpinnerRing,
+    };
+  },
+  mounted() {
+    addEventListener("load", (event) => {
+      this.showSpinnerRing = false;
+    });
   },
   computed: {
     ...mapGetters({
