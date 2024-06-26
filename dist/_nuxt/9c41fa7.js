@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{329:function(n,o,t){"use strict";t.r(o);var e={name:"HorizontalLine"},r=t(24),component=Object(r.a)(e,(function(){return(0,this._self._c)("hr",{staticClass:"border-indigo-400 bg-indigo-400"})}),[],!1,null,"57c74244",null);o.default=component.exports}}]);
