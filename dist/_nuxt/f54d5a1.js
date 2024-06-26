@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{324:function(e,n,r){"use strict";r.r(n);var t={name:"SpinnerRing"},o=r(24),component=Object(o.a)(t,(function(){return(0,this._self._c)("div",{staticClass:"w-12 h-12 rounded-full animate-spin border-4 border-solid border-sky-500 border-t-transparent"})}),[],!1,null,"38ecee6c",null);n.default=component.exports}}]);
