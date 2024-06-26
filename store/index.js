@@ -8,7 +8,9 @@ export const actions = {
   },
   nuxtClientInit({ commit }, { req }) {
     const cart = JSON.parse(localStorage.getItem("cart"));
-    commit("cart/setCart", cart);
+    if (cart != null) {
+      commit("cart/setCart", cart);
+    }
   },
 };
 
