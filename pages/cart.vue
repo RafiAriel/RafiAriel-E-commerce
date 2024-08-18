@@ -37,10 +37,19 @@
         </div>
         <button
           class="flex gap-2 items-center py-4 justify-center bg-yellow-300"
+          @click="isCheckoutButtonClicked = true"
         >
           <div class="text-xl font-bold">Checkout</div>
           <CircleRightButton />
         </button>
+
+        <div
+          v-if="isCheckoutButtonClicked"
+          class="py-2 text-red-500 font-bold text-center"
+        >
+          The site is in advanced stages of development, this stage will be in
+          the next version
+        </div>
       </div>
     </div>
   </div>
@@ -64,11 +73,13 @@ export default {
   },
   async asyncData() {
     let showSpinnerRing = false;
+    let isCheckoutButtonClicked = false;
     if (process.server) {
       showSpinnerRing = true;
     }
     return {
       showSpinnerRing,
+      isCheckoutButtonClicked,
     };
   },
   mounted() {
